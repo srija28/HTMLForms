@@ -16,7 +16,8 @@
         </div>
         <div>
             <label for="pwd">Enter Password: </label>
-            <input type="password" id="pwd" name="pwd" required>
+            <input type="password" id="pwd" name="pwd" required placeholder="password">
+             <error-output class="password-error" for="pwd"></error-output>
         </div>
         <div>
             <label for="email" >Email ID: </label>
@@ -78,6 +79,14 @@
              if(mobileRegex.test(mobile.value))
              mobError.textContent="";
              else mobError.textContent="Invalid Mobile number";
+         });
+         const pwd = document.querySelector('#pwd');
+         const pwdError = document.querySelector('.password-error');
+         pwd.addEventListener('input',function(){
+             let passRegex = RegExp('[a-zA-Z0-9_&%$#@]{8,}$');
+             if(passRegex.test(pwd.value))
+             pwdError.textContent="";
+             else pwdError.textContent="Invalid Password";          
          });
         const salary = document.querySelector('#salary');
         const output = document.querySelector('.salary-output');
