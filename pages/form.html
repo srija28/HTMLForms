@@ -25,8 +25,9 @@
              <error-output class="email-error" for="email"></error-output>
         </div>
         <div>
-            <label for="url">URL : </label>
-            <input type="url" id="url" name="url">
+            <label for="url">URL: </label>
+             <input type="url" id="url" name="url" placeholder="https://example.com">
+             <error-output class="url-error" for="url"></error-output>
         </div>
         <div>
             <label for="number">Number input type: </label>
@@ -39,7 +40,7 @@
         </div>
         <div>
             <label for="search">Search input type: </label>
-            <input type="search" id="search" name="search">
+            <input type="search" id="search" name="search" placeholder="search">
         </div>
         <div class="nativeDateTimePicker">
             <label for="startDate">Choose a date and time: </label>
@@ -83,10 +84,18 @@
          const pwd = document.querySelector('#pwd');
          const pwdError = document.querySelector('.password-error');
          pwd.addEventListener('input',function(){
-             let passRegex = RegExp('[a-zA-Z0-9_&%$#@]{8,}$');
+             let passRegex = RegExp('^(?=.*\\d)(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$');
              if(passRegex.test(pwd.value))
              pwdError.textContent="";
              else pwdError.textContent="Invalid Password";          
+         });
+         const url = document.querySelector('#url');
+         const urlError = document.querySelector('.url-error');
+         url.addEventListener('input',function(){
+             let urlRegex = RegExp('^(https?|chrome):\/\/[^\s$.?#].[^\s]*$');
+             if(urlRegex.test(url.value))
+             urlError.textContent="";
+             else urlError.textError="Invalid URL."; 
          });
         const salary = document.querySelector('#salary');
         const output = document.querySelector('.salary-output');
